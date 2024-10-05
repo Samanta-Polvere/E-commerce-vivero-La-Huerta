@@ -1,0 +1,39 @@
+let desearegistrarse = confirm("Para poder realizar tu compra es necesario registrarte. Deseas registrarte");
+
+if (desearegistrarse) {
+    let nombre = prompt("Ingresá tu nombre ");
+    let apellido = prompt("Ingresá tu apellido");
+    let mail = prompt("Ingresá tu correo electronico");
+    let password = prompt("Ingresá tu password");
+
+    function registrarse(nombre, apellido, mail, password) {
+        console.log("Nombre: " +nombre);
+        console.log("Apellido: " +apellido);
+        console.log("E-mail: " +mail);
+        console.log("Password: " +password);
+    }
+    registrarse(nombre, apellido, mail, password);
+
+
+    let intentosMaximos = 3;
+
+
+    for (let i = 0; i < intentosMaximos; i++) {
+        let emailIngresado = prompt("Ingresá tu correo electronico");
+        let passwordIngresada = prompt("Ingresá tu contraseña");
+
+        if (emailIngresado === mail && passwordIngresada === password) {
+            alert("Hola " + nombre + " " + apellido);
+            break;
+        }
+        else {
+            alert("Usuario o Contraseña incorrectos. Tienes " + (intentosMaximos - i - 1) + " intentos máximos.");
+        }
+        if (i=== intentosMaximos - 1) {
+            alert("Alcanzaste el máximo de los intentos. Tu usuario ha sido bloqueado");
+        }
+    }
+}
+else {
+    alert("No te registraste!. Recuerda que en caso que desees comprar, deberas registrarte.");
+}
