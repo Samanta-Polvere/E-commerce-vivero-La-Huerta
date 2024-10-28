@@ -1,5 +1,5 @@
-alert("Hola! Somos Vivero La Huerta! Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.");
-
+/*alert("Hola! Somos Vivero La Huerta! Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.");*/
+/*
 let registro = parseInt(prompt("Para poder comprar es necesarios que estes registrado. Si aún no te has registrado y lo deseas hacer presioná 1. Si ya te encuentras registrado y queres comprar, presioná 2 . En caso que no desees continuar presioná 3 para salir de las opciones y seguir mirando nuestra web!."));
 // Crea usr nuevo//
 if (registro === 1) {
@@ -216,4 +216,130 @@ else if (continuarCompra === 2) {
 }
 else {
     parseInt(prompt("Debes seleccionar una opcion correcta. Opción 1 para continuar con la compra. Opcion 2 para salir del proceso de compra."));
+}*/
+
+
+// Objeto - Crea usr nuevo//
+class UsuarioNuevo {
+    constructor(dni, nombre, apellido, mail, contraseña) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
+        this.contraseña = contraseña;
+    }
+};
+const usuario1 = new UsuarioNuevo(31640916, "Samanta ", "Polvere", "samanta.polvere@gmail.com", 1234);
+const usuario2 = new UsuarioNuevo(10508740, "Susana ", "Perez", "susana.perez@gmail.com", 1234);
+
+const listaUsuario = [usuario1, usuario2]
+
+
+
+
+    //funcion para loguearse//
+    function loguearse(dni, contraseña) {
+        
+        const usuarioExistente = listaUsuario.find(usuario => usuario.dni === dni);
+                      
+        if (usuarioExistente) {
+            console.log(`¡Hola ${usuarioExistente.nombre} ${usuarioExistente.apellido}. Bienvenido a vivero La Huerta!`);
+        }
+        else {
+            alert("Tenes que registrarte");
+            
+
+
+        }
+    }
+
+loguearse(10508740, "Susana ", "Perez", "susana.perez@gmail.com", 1234);
+loguearse(13132384, "Horacio ", "Sanchez", "horacio.sanchez@gmail.com", 1546);
+
+
+
+
+
+
+//Lista de productos con sus categorias//
+
+class Productos {
+    constructor(id, nombre, categoria, precio, stock) {
+        this.id = id;
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+
+    }
+    //bajando el stock cuando se compra//
+    vender() {
+        if (this.stock > 0) {
+            this.stock -= 1;
+        }
+        else {
+            console.log("Lo sentimos, no contamos con esa cantidad en stock por el momento.");
+        }
+
+
+    }
+};
+
+//productos de la pagina//
+const producto1 = new Productos(1, "Orquidea Phalaenopsis", "Plantas", 530, 20);
+const producto2 = new Productos(2, "Ficus Hawaii", "Plantas", 730, 30);
+const producto3 = new Productos(3, "Gomero Rubra", "Plantas", 1530, 20);
+const producto4 = new Productos(4, "Maceta Rotoldeadas", "Macetas", 845, 40);
+const producto5 = new Productos(5, "Macetas animales", "Macetas", 1245, 40);
+const producto6 = new Productos(6, "Maceta Terracota Nro14", "Macetas", 285, 40);
+const producto7 = new Productos(7, "Tutores de caña fina", "Accesorios", 645, 30);
+const producto8 = new Productos(8, "Figuras de mariposas decorativas", "Accesorios", 455, 30);
+const producto9 = new Productos(9, "Estanteria para plantas", "Accesorios", 2285, 20);
+
+
+const listaProductos = [
+    producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9
+];
+
+
+function mostrarProductos() {
+    const htmlProductos = listaProductos.map(producto => {
+        return `
+        <div class="cardprod">
+            <h3 class="titulo-producto">${producto.nombre}</h3>
+            <p>Precio: ${producto.precio}</p>
+            <input type=number value="1" id="cantidad"/>
+            <button onclick='comprarProductos(${JSON.stringify(producto)}, this.previousElementSibling.value)'>Comprar</button>
+            
+        </div>
+        `;
+    }).join("");
+
+    document.getElementById("contenedor-productos").innerHTML = htmlProductos;
 }
+
+mostrarProductos()
+
+let carrito = []
+
+
+function comprarProductos(producto, cantidad) {
+
+    if(producto.stock >= parseInt(cantidad)){
+
+        carrito.push(producto);
+    }
+    else {
+        alert("Lo sentimos, no contamos con esa cantidad en stock por el momento.");
+    }
+  
+}
+console.log(carrito);
+
+
+function mostrarCarrito(producto) {
+
+    
+
+}
+
