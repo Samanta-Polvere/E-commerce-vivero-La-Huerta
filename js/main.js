@@ -370,7 +370,7 @@ listaProductos.forEach(producto => {
 
 
     productoDivHtml.className = "prod-div";
-    
+
     nombre.innerText = `Nombre: ${producto.nombre}`
     precio.innerText = `Precio: ${producto.precio}`
     stock.innerText = `Stock: ${producto.stock}`
@@ -394,16 +394,13 @@ listaProductos.forEach(producto => {
 let carrito = []
 
 function agregarProducto(producto) {
-    /*const producto = listaProductos.find((prod) => prod.id == producto); // encontrar el producto en listaProductos
-
-   /* if (producto) {*/
+     
     carrito.push(producto) //agrego el producto al carrito//
-    VerCarrito();                      //muestro el carrito//
+    VerCarrito();        //muestro el carrito//
 }
 
 
 //ver carrito//
-
     function VerCarrito(){
     carrito.forEach(prodElegido => {
         const carritohtml = document.getElementById("carrito");
@@ -427,91 +424,3 @@ function agregarProducto(producto) {
     })};
 
 
-
-
-//ESto es lo hecho ayer domingo//
-/*
-
-
-
-//Lista de productos con sus categorias//
-
-class Productos {
-    constructor(id, nombre, categoria, precio, stock) {
-        this.id = id;
-        this.categoria = categoria;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-
-    }
-    //bajando el stock cuando se compra//
-    vender() {
-        if (this.stock > 0) {
-            this.stock -= 1;
-        }
-        else {
-            console.log("Lo sentimos, no contamos con esa cantidad en stock por el momento.");
-        }
-
-
-    }
-};
-
-//productos de la pagina//
-const producto1 = new Productos(1, "Orquidea Phalaenopsis", "Plantas", 530, 20);
-const producto2 = new Productos(2, "Ficus Hawaii", "Plantas", 730, 30);
-const producto3 = new Productos(3, "Gomero Rubra", "Plantas", 1530, 20);
-const producto4 = new Productos(4, "Maceta Rotoldeadas", "Macetas", 845, 40);
-const producto5 = new Productos(5, "Macetas animales", "Macetas", 1245, 40);
-const producto6 = new Productos(6, "Maceta Terracota Nro14", "Macetas", 285, 40);
-const producto7 = new Productos(7, "Tutores de caña fina", "Accesorios", 645, 30);
-const producto8 = new Productos(8, "Figuras de mariposas decorativas", "Accesorios", 455, 30);
-const producto9 = new Productos(9, "Estanteria para plantas", "Accesorios", 2285, 20);
-
-
-const listaProductos = [
-    producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9
-];
-
-
-function mostrarProductos() {
-    const htmlProductos = listaProductos.map(producto => {
-        return `
-        <div class="cardprod">
-            <h3 class="titulo-producto">${producto.nombre}</h3>
-            <p>Precio: ${producto.precio}</p>
-            <input type=number value="1" id="cantidad"/>
-            <button onclick='comprarProductos(${JSON.stringify(producto)}, this.previousElementSibling.value)'>Comprar</button>
-            
-        </div>
-        `;
-    }).join("");
-
-    document.getElementById("contenedor-productos").innerHTML = htmlProductos;
-}
-
-mostrarProductos()
-
-let carrito = []
-
-function comprarProductos(producto, cantidad) {
-
-    if (producto.stock >= parseInt(cantidad)) {
-
-        carrito.push(producto);
-    }
-    else {
-        alert("Lo sentimos, no contamos con esa cantidad en stock por el momento.");
-    }
-
-}
-console.log(carrito);
-
-
-function mostrarCarrito(producto) {
-   
-}
-
-
-*/
