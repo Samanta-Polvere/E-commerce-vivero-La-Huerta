@@ -1,4 +1,4 @@
-/*alert("Hola! Somos Vivero La Huerta! Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.");*/
+/*alert("Hola! Somos Vivero La Huerta! Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.");
 /*
 let registro = parseInt(prompt("Para poder comprar es necesarios que estes registrado. Si aún no te has registrado y lo deseas hacer presioná 1. Si ya te encuentras registrado y queres comprar, presioná 2 . En caso que no desees continuar presioná 3 para salir de las opciones y seguir mirando nuestra web!."));
 // Crea usr nuevo//
@@ -219,7 +219,7 @@ else {
 }*/
 
 
-// Objeto - Loguarse//
+// Objeto - Loguarse
 class UsuarioNuevo {
     constructor(dni, nombre, apellido, mail, contraseña) {
         this.dni = dni;
@@ -263,7 +263,7 @@ acceder.innerText = "Ingresar"
 
 logueo.appendChild(acceder);
 
-//funcion para loguearse//
+//funcion para loguearse
 function loguearse() {
     const dniIngresado = parseInt(dni.value);
     const contraseñaIngresada = parseInt(contraseña.value);
@@ -282,7 +282,7 @@ function loguearse() {
 acceder.addEventListener("click", loguearse);
 
 
-//lista de productos de la página//
+//lista de productos de la página
 const listaProductos = [
     {
         id: 1,
@@ -358,15 +358,17 @@ const listaProductos = [
     },
 ]
 
-// recorro el array y muestro todos los produtos//
+const container = document.getElementById("contenedor-productos");
+
+// recorro el array y muestro todos los produtos
 listaProductos.forEach(producto => {
 
-    const container = document.getElementById("contenedor-productos");
-    const productoDivHtml = document.createElement("div"); //div que contiene los productos//
-    const nombre = document.createElement("h3"); //h3 que va a tener los nombres de cada producto//
-    const precio = document.createElement("p"); //parrafo con precio//
-    const stock = document.createElement("p"); // parrafo con stock//
-    const botonAgregar = document.createElement("button"); //boton de comprar//
+   
+    const productoDivHtml = document.createElement("div"); //div que contiene los productos
+    const nombre = document.createElement("h3"); //h3 que va a tener los nombres de cada producto
+    const precio = document.createElement("p"); //parrafo con precio
+    const stock = document.createElement("p"); // parrafo con stock
+    const botonAgregar = document.createElement("button"); //boton de comprar
 
 
     productoDivHtml.className = "prod-div";
@@ -389,38 +391,73 @@ listaProductos.forEach(producto => {
 })
 
 
-
-//agregar productos al carrito//
+//agregar productos al carrito
 let carrito = []
 
 function agregarProducto(producto) {
      
-    carrito.push(producto) //agrego el producto al carrito//
-    VerCarrito();        //muestro el carrito//
+    carrito.push(producto) //agrego el producto al carrito
+    alert("Felicidades! Agregaste un producto a tu carrito.")
+ 
+  
 }
 
+const conteinerCarrito = document.createElement("div"); //creo un div para el botón "Ver carrito"
+conteinerCarrito.id = "carrito"; //creo id para el div carrito
+container.appendChild(conteinerCarrito);    
 
-//ver carrito//
+const botonVerCarrito = document.createElement("button");
+botonVerCarrito.innerText = "Ver Carrito";
+
+botonVerCarrito.onclick = () => VerCarrito(carrito);
+conteinerCarrito.appendChild(botonVerCarrito);
+localStorage.setItem("Carrito", carrito)
+
+
+//borrar carrito
+
+const conteinerBorrarCarrito = document.createElement("div"); 
+conteinerBorrarCarrito.id = "borrarCarrito"; //creo id para el div carrito
+container.appendChild(conteinerBorrarCarrito);  
+
+const botonBorrarCarrito = document.createElement("button"); 
+botonBorrarCarrito.innerText = "Borrar Carrito";
+conteinerCarrito.appendChild(botonBorrarCarrito);
+botonBorrarCarrito.onclick = () => localStorage.clear("Carrito"); //elimino del Storage
+
+
+
+
+//ver carrito
     function VerCarrito(){
+       const carritohtml = document.getElementById("prod-agregados");
+       carritohtml.innerHTML = ""; 
+        
+        if (carrito.length === 0) {
+      
+        alert("Tu carrito está vacio.")
+        return;
+    }
+    else{
     carrito.forEach(prodElegido => {
-        const carritohtml = document.getElementById("carrito");
-        carritohtml.innerHTML = ""; 
         const divCarrito = document.createElement("div");
         const nombre = document.createElement("h3");
         const precio = document.createElement("p");
         const stock = document.createElement("p");
-        const botonVerCarrito = document.createElement("button");
+
 
         nombre.innerText = `Nombre: ${prodElegido.nombre}`;
         precio.innerText = `Precio: $${prodElegido.precio}`;
         stock.innerText = `Stock: ${prodElegido.stock}`;
-        botonVerCarrito.innerText = "Ver Carrito";
+       
 
         divCarrito.appendChild(nombre);
         divCarrito.appendChild(precio);
         divCarrito.appendChild(stock);
-        divCarrito.appendChild(botonVerCarrito);
         carritohtml.appendChild(divCarrito);
-    })};
+        
+    })}};
+
+  
 
 
