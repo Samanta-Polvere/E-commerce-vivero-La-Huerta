@@ -219,7 +219,7 @@ else {
 }*/
 
 
-// Objeto - Crea usr nuevo//
+// Objeto - Loguarse//
 class UsuarioNuevo {
     constructor(dni, nombre, apellido, mail, contraseña) {
         this.dni = dni;
@@ -234,30 +234,203 @@ const usuario2 = new UsuarioNuevo(10508740, "Susana ", "Perez", "susana.perez@gm
 
 const listaUsuario = [usuario1, usuario2]
 
+const logueo = document.getElementById("logueo");
+
+const labelDni = document.createElement("label");
+labelDni.innerText = "DNI:"
+labelDni.htmlFor = "DNI";
+
+const dni = document.createElement("input");
+dni.innerText = "Dni:"
+
+logueo.appendChild(labelDni);
+logueo.appendChild(dni);
 
 
+const labelContraseña = document.createElement("label");
+labelContraseña.innerText = "Contraseña:"
+labelContraseña.htmlFor = "Contraseña";
 
-    //funcion para loguearse//
-    function loguearse(dni, contraseña) {
-        
-        const usuarioExistente = listaUsuario.find(usuario => usuario.dni === dni);
-                      
-        if (usuarioExistente) {
-            console.log(`¡Hola ${usuarioExistente.nombre} ${usuarioExistente.apellido}. Bienvenido a vivero La Huerta!`);
-        }
-        else {
-            alert("Tenes que registrarte");
-            
+const contraseña = document.createElement("input");
+contraseña.innerText = "Contraseña"
+
+logueo.appendChild(labelContraseña);
+logueo.appendChild(contraseña);
+
+const acceder = document.createElement("button");
+acceder.innerText = "Ingresar"
 
 
-        }
+logueo.appendChild(acceder);
+
+//funcion para loguearse//
+function loguearse() {
+    const dniIngresado = parseInt(dni.value);
+    const contraseñaIngresada = parseInt(contraseña.value);
+
+    const usuarioExistente = listaUsuario.find(usuario => usuario.dni === dniIngresado && usuario.contraseña === contraseñaIngresada);
+
+    if (usuarioExistente) {
+        const mensajeLogueo = `¡Hola ${usuarioExistente.nombre} ${usuarioExistente.apellido}. Bienvenido a vivero La Huerta!`
+        alert(mensajeLogueo);
     }
+    else {
+        alert("Tenes que registrarte");
+    }
+}
 
-loguearse(10508740, "Susana ", "Perez", "susana.perez@gmail.com", 1234);
-loguearse(13132384, "Horacio ", "Sanchez", "horacio.sanchez@gmail.com", 1546);
+acceder.addEventListener("click", loguearse);
+
+
+//lista de productos de la página//
+const listaProductos = [
+    {
+        id: 1,
+        nombre: "Orquidea Phalaenopsis",
+        Categoria: "Plantas",
+        precio: 530,
+        stock: 20
+
+    },
+    {
+        id: 2,
+        nombre: "Ficus Hawaii",
+        Categoria: "Plantas",
+        precio: 730,
+        stock: 30
+
+    },
+    {
+        id: 3,
+        nombre: "Gomero Rubra",
+        Categoria: "Plantas",
+        precio: 1530,
+        stock: 20
+
+    },
+    {
+        id: 4,
+        nombre: "Maceta Rotoldeadas",
+        Categoria: "Macetas",
+        precio: 845,
+        stock: 40
+
+    },
+    {
+        id: 5,
+        nombre: "Macetas animales",
+        Categoria: "Macetas",
+        precio: 1245,
+        stock: 40
+
+    },
+    {
+        id: 6,
+        nombre: "Maceta Terracota Nro14",
+        Categoria: "Macetas",
+        precio: 285,
+        stock: 40
+
+    },
+    {
+        id: 7,
+        nombre: "Tutores de caña fina",
+        Categoria: "Accesorios",
+        precio: 645,
+        stock: 30
+
+    },
+    {
+        id: 8,
+        nombre: "Figuras de mariposas decorativas",
+        Categoria: "Accesorios",
+        precio: 455,
+        stock: 30
+
+    },
+    {
+        id: 9,
+        nombre: "Estanteria para plantas",
+        Categoria: "Accesorios",
+        precio: 2285,
+        stock: 20
+
+    },
+]
+
+// recorro el array y muestro todos los produtos//
+listaProductos.forEach(producto => {
+
+    const container = document.getElementById("contenedor-productos");
+    const productoDivHtml = document.createElement("div"); //div que contiene los productos//
+    const nombre = document.createElement("h3"); //h3 que va a tener los nombres de cada producto//
+    const precio = document.createElement("p"); //parrafo con precio//
+    const stock = document.createElement("p"); // parrafo con stock//
+    const botonAgregar = document.createElement("button"); //boton de comprar//
+
+
+    productoDivHtml.className = "prod-div";
+    
+    nombre.innerText = `Nombre: ${producto.nombre}`
+    precio.innerText = `Precio: ${producto.precio}`
+    stock.innerText = `Stock: ${producto.stock}`
+
+
+    productoDivHtml.appendChild(nombre);
+    productoDivHtml.appendChild(precio);
+    productoDivHtml.appendChild(stock);
+    productoDivHtml.appendChild(botonAgregar);
+
+
+    botonAgregar.innerText = "Agregar al Carrito"
+
+    container.appendChild(productoDivHtml);
+    botonAgregar.onclick = () => agregarProducto(producto);
+})
 
 
 
+//agregar productos al carrito//
+let carrito = []
+
+function agregarProducto(producto) {
+    /*const producto = listaProductos.find((prod) => prod.id == producto); // encontrar el producto en listaProductos
+
+   /* if (producto) {*/
+    carrito.push(producto) //agrego el producto al carrito//
+    VerCarrito();                      //muestro el carrito//
+}
+
+
+//ver carrito//
+
+    function VerCarrito(){
+    carrito.forEach(prodElegido => {
+        const carritohtml = document.getElementById("carrito");
+        carritohtml.innerHTML = ""; 
+        const divCarrito = document.createElement("div");
+        const nombre = document.createElement("h3");
+        const precio = document.createElement("p");
+        const stock = document.createElement("p");
+        const botonVerCarrito = document.createElement("button");
+
+        nombre.innerText = `Nombre: ${prodElegido.nombre}`;
+        precio.innerText = `Precio: $${prodElegido.precio}`;
+        stock.innerText = `Stock: ${prodElegido.stock}`;
+        botonVerCarrito.innerText = "Ver Carrito";
+
+        divCarrito.appendChild(nombre);
+        divCarrito.appendChild(precio);
+        divCarrito.appendChild(stock);
+        divCarrito.appendChild(botonVerCarrito);
+        carritohtml.appendChild(divCarrito);
+    })};
+
+
+
+
+//ESto es lo hecho ayer domingo//
+/*
 
 
 
@@ -322,24 +495,23 @@ mostrarProductos()
 
 let carrito = []
 
-
 function comprarProductos(producto, cantidad) {
 
-    if(producto.stock >= parseInt(cantidad)){
+    if (producto.stock >= parseInt(cantidad)) {
 
         carrito.push(producto);
     }
     else {
         alert("Lo sentimos, no contamos con esa cantidad en stock por el momento.");
     }
-  
+
 }
 console.log(carrito);
 
 
 function mostrarCarrito(producto) {
-
-    
-
+   
 }
 
+
+*/
