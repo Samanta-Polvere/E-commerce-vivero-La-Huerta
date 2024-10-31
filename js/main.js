@@ -360,7 +360,7 @@ const listaProductos = [
 
 const container = document.getElementById("contenedor-productos");
 
-// recorro el array y muestro todos los produtos
+// mostrar todos los produtos
 listaProductos.forEach(producto => {
 
    
@@ -397,7 +397,7 @@ let carrito = []
 function agregarProducto(producto) {
      
     carrito.push(producto) //agrego el producto al carrito
-    alert("Felicidades! Agregaste un producto a tu carrito.")
+    alert(`Felicidades! Agregaste ${producto.nombre} Precio: ${producto.precio} a tu carrito.`)
  
   
 }
@@ -414,7 +414,16 @@ conteinerCarrito.appendChild(botonVerCarrito);
 localStorage.setItem("Carrito", carrito)
 
 
-//borrar carrito
+//borrar todo el carrito
+
+
+function BorrarTodoCarrito(){
+    
+let carrito =[];
+localStorage.removeItem("Carrito"); 
+alert("Se borraron todos los productos del carrito");
+
+}
 
 const conteinerBorrarCarrito = document.createElement("div"); 
 conteinerBorrarCarrito.id = "borrarCarrito"; //creo id para el div carrito
@@ -423,10 +432,9 @@ container.appendChild(conteinerBorrarCarrito);
 const botonBorrarCarrito = document.createElement("button"); 
 botonBorrarCarrito.innerText = "Borrar Carrito";
 conteinerCarrito.appendChild(botonBorrarCarrito);
-botonBorrarCarrito.onclick = () => localStorage.clear("Carrito"); //elimino del Storage
+/*botonBorrarCarrito.onclick = () => localStorage.removeItem("Carrito"); //elimino del Storage*/
 
-
-
+botonBorrarCarrito.onclick = BorrarTodoCarrito;
 
 //ver carrito
     function VerCarrito(){
