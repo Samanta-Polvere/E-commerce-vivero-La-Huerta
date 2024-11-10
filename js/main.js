@@ -500,13 +500,12 @@ function mostrarProdporCategAccesorios() {
 
 //agregar productos al carrito
 
-let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
-
+let carrito =  JSON.parse(localStorage.getItem("Carrito")) || [] 
 
 //Actualizar el local storage
 
 function actualizarLocalStorage(){
-    localStorage.setItem("Carrito", JSON.stringify(carrito)); //se actualiza
+    localStorage.setItem("Carrito", JSON.stringify(carrito)); //función para actualizar el storage
 }
 
 function agregarProducto(producto) {
@@ -539,8 +538,8 @@ const carritohtml = document.getElementById("prod-agregados");
 function verCarrito() {
 
     carritohtml.innerHTML = "";
-    
-    localStorage.getItem("Carrito");
+   
+    //localStorage.getItem("Carrito");
    
     if (carrito.length > 0) {
 
@@ -551,7 +550,7 @@ function verCarrito() {
             const stock = document.createElement("p");
             const botonEliminarProd = document.createElement("button")
             botonEliminarProd.id = "eliminarProd";
-
+          
 
             nombre.innerText = `Nombre: ${prodElegido.nombre}`;
             precio.innerText = `Precio: $${prodElegido.precio}`;
@@ -580,11 +579,12 @@ function verCarrito() {
 // Funcion para eliminar un producto del carrito
 function borrarProd(id) {
     const prodFiltrados = carrito.findIndex((prod) => prod.id == id)
-
+    actualizarLocalStorage()
     
 
     if(prodFiltrados >=0){
         carrito.splice(prodFiltrados,1)
+        actualizarLocalStorage()
         alert("El producto ha sido eliminado del carrito")
         verCarrito()
     }
@@ -609,6 +609,7 @@ function vaciarCarrito() {
     if (carrito.length !== 0) {
         carrito = []; //se eliminan los productos del carrito 
         localStorage.removeItem("Carrito");
+        actualizarLocalStorage()
         alert("Se borraron todos los productos del carrito");
         verCarrito()
     } else {
