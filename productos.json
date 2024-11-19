@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "imagen": "../img/orquidea-phalaenopsis.jfif",
+        "nombre": "Orquidea Phalaenopsis",
+        "categoria": "Plantas",
+        "precio": 530,
+        "stock": 20
+
+    },
+    {
+        "id": 2,
+        "imagen": "../img/ficus-hawaii.jfif",
+        "nombre": "Ficus Hawaii",
+        "categoria": "Plantas",
+        "precio": 730,
+        "stock": 30
+
+    },
+    {
+        "id": 3,
+        "imagen": "../img/gomero-rubra.jfif",
+        "nombre": "Gomero Rubra",
+        "categoria": "Plantas",
+        "precio": 1530,
+        "stock": 20
+
+    },
+    {
+        "id": 4,
+        "imagen": "../img/maceta-rotomoldeadas.jpg",
+        "nombre": "Maceta Rotoldeadas",
+        "categoria": "Macetas",
+        "precio": 845,
+        "stock": 40
+
+    },
+    {
+        "id": 5,
+        "imagen": "../img/maceta-animales.jpg",
+        "nombre": "Macetas animales",
+        "categoria": "Macetas",
+        "precio": 1245,
+        "stock": 40
+
+    },
+    {
+        "id": 6,
+        "imagen": "../img/maceta-terracotaNro14.jpeg",
+        "nombre": "Maceta Terracota Nro14",
+        "categoria": "Macetas",
+        "precio": 285,
+        "stock": 40
+
+    },
+    {
+        "id": 7,
+        "imagen": "../img/tutoresdeCanafina.jfif",
+        "nombre": "Tutores de caña fina",
+        "categoria": "Accesorios",
+        "precio": 645,
+        "stock": 30
+
+    },
+    {
+        "id": 8,
+        "imagen": "../img/figuraMariposaDeco.jpeg",
+        "nombre": "Figuras de mariposas decorativas",
+        "categoria": "Accesorios",
+        "precio": 455,
+        "stock": 30
+
+    },
+    {
+        "id": 9,
+        "imagen": "../img/estanteriaplantas.jpg",
+        "nombre": "Estanteria para plantas",
+        "categoria": "Accesorios",
+        "precio": 2285,
+        "stock": 20
+
+    }
+]
