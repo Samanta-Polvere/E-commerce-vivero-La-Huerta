@@ -1,6 +1,23 @@
 
 //lista de productos de la página
 
+let listaProductos = [];
+
+// Función para cargar productos
+async function cargarProductos() {
+    try {
+        const response = await fetch("../productos.json");
+        listaProductos = await response.json();
+       
+        mostrarTodosProd()
+
+    } catch (error) {
+        console.error("Error al cargar los productos:", error);
+    }
+}
+cargarProductos();
+
+/*
 const listaProductos = [
     {
         id: 1,
@@ -83,24 +100,25 @@ const listaProductos = [
         stock: 20
 
     },
-]
+]*/
 
 const container = document.getElementById("contenedor-productos"); //creo el contenedor donde van a ir todos los productos mostrados haciendo referencia al div "contenedor-productos" del html
-/*const mainProduct = document.getElementsByid("html-Productos");*/
+const htmlProductos = document.getElementById("html-Productos");
+const whatsApplahuerta = document.getElementById("whatsApp-lahuerta");
 
 const botonMostrarProd = document.createElement("button"); //boton ver todos los productos
-botonMostrarProd.innerText = "Ver todos los productos"
+botonMostrarProd.innerText = "Ver todos los productos";
 botonMostrarProd.addEventListener("click", mostrarTodosProd); //Muestra todos los productos 
 
 
 function mostrarTodosProd() {
 
-    limpiarCategDivHtml();
- 
-    
+    //limpiarCategDivHtml();
+
+
     // mostrar todos los produtos
     listaProductos.forEach(producto => {
-     
+
         const productoDivHtml = document.createElement("div"); //div que contiene los productos
         const nombre = document.createElement("h4"); //h3 que va a tener los nombres de cada producto
         const precio = document.createElement("p"); //parrafo con precio
@@ -140,15 +158,16 @@ function mostrarTodosProd() {
 }
 
 //funcion para limpiar todos los productos
-function limpiarTodosProd (){
-    container.innerHTML= '' ;
+function limpiarTodosProd() {
+    container.innerHTML = '';
 }
 
-
+/*
 //Mostrar Categorias por productos
+
 const categoriaDivHtml = document.createElement("div"); //div que contiene las categorias
 categoriaDivHtml.className = "categ-div";
-container.appendChild(categoriaDivHtml); //agrego el div class=categ-div al contenedor-productos*/
+container.appendChild(categoriaDivHtml); //agrego el div class=categ-div al contenedor-productos
 
 const botonPlantas = document.querySelector(".dropdown-item-plantas"); //Se agrega al boton plantas del nav
 const botonMacetas = document.querySelector(".dropdown-item-macetas"); //Se agrega al boton macetas del nav
@@ -169,10 +188,10 @@ function limpiarCategDivHtml() {
 limpiarCategDivHtml();
 
 //funcion para mostrar los productos de la categoria Plantas
-function mostrarProdporCategPlanta() {
-    
-    limpiarCategDivHtml()
 
+function mostrarProdporCategPlanta() {
+
+    limpiarCategDivHtml()
     nombreCategPlanta.forEach((prodCatPlantas) => {
         const prodCategPlantDivHtml = document.createElement("div");
         const nombre = document.createElement("h3"); //h3 que va a tener los nombres de cada producto en la catergoria Plantas
@@ -190,7 +209,7 @@ function mostrarProdporCategPlanta() {
 
         categoriaDivHtml.appendChild(botonMostrarProd);
         botonPlantas.removeEventListener("click", mostrarProdporCategPlanta);
-  
+
     }
 
 
@@ -200,7 +219,7 @@ function mostrarProdporCategPlanta() {
 
 //funcion para mostrar los productos de la categoria Macetas
 function mostrarProdporCategMacetas() {
-    
+
     limpiarCategDivHtml()
 
     nombreCategMaceta.forEach((prodCatMaceta) => {
@@ -222,7 +241,7 @@ function mostrarProdporCategMacetas() {
 
         categoriaDivHtml.appendChild(botonMostrarProd);
         botonPlantas.removeEventListener("click", mostrarProdporCategMacetas);
-       
+
     }
     )
 
@@ -230,7 +249,7 @@ function mostrarProdporCategMacetas() {
 
 //funcion para mostrar los productos de la categoria Accesorios
 function mostrarProdporCategAccesorios() {
-    
+
     limpiarCategDivHtml()
 
     nombreCategAccesorio.forEach((prodCataccesorios) => {
@@ -255,6 +274,7 @@ function mostrarProdporCategAccesorios() {
     }
     )
 }
+*/
 
 
 //agregar productos al carrito
@@ -280,19 +300,23 @@ function agregarProducto(producto) {
 
 const conteinerCarrito = document.createElement("div"); //creo un div para el botón "Ver carrito"
 conteinerCarrito.id = "carrito"; //creo id para el div ver carrito
-container.appendChild(conteinerCarrito);
+htmlProductos.appendChild(conteinerCarrito);
 
 const botonVerCarrito = document.createElement("button");
-botonVerCarrito.innerText = "Ver Carrito";
+botonVerCarrito.className = "btn-verCarrito"
+
 botonVerCarrito.onclick = () => verCarrito(carrito);
-conteinerCarrito.appendChild(botonVerCarrito);
+htmlProductos.appendChild(botonVerCarrito);
+
 
 
 const carritohtml = document.getElementById("prod-agregados");
+conteinerCarrito.appendChild(carritohtml);
 
 
-
-
+//oculto conteinercarrito
+conteinerCarrito.style.display = "none";
+  
 //ver carrito
 function verCarrito() {
 
@@ -304,17 +328,18 @@ function verCarrito() {
 
         carrito.forEach(prodElegido => {
             const divCarrito = document.createElement("div");
+            divCarrito.className = "prod-elegidos"
             const nombre = document.createElement("h3");
             const precio = document.createElement("p");
             const stock = document.createElement("p");
             const botonEliminarProd = document.createElement("button")
             botonEliminarProd.id = "eliminarProd";
-
+            conteinerCarrito.style.display = "block";
 
             nombre.innerText = `Nombre: ${prodElegido.nombre}`;
             precio.innerText = `Precio: $${prodElegido.precio}`;
             stock.innerText = `Stock: ${prodElegido.stock}`;
-            botonEliminarProd.innerText = "X";
+
 
 
 
@@ -324,10 +349,11 @@ function verCarrito() {
             divCarrito.appendChild(botonEliminarProd);
             carritohtml.appendChild(divCarrito);
             botonEliminarProd.onclick = () => borrarProd(prodElegido.id)
+
         })
     }
     else {
-
+        conteinerCarrito.style.display = "none";
         alert("Tu carrito está vacio.")
         return;
     }
@@ -352,14 +378,15 @@ function borrarProd(id) {
 
 //Vaciar todo el carrito
 
-const conteinerVaciarCarrito = document.createElement("div");
-conteinerVaciarCarrito.id = "VaciarCarrito"; //creo id para el div carrito
-container.appendChild(conteinerVaciarCarrito);
+//const conteinerVaciarCarrito = document.createElement("div");
+//conteinerVaciarCarrito.id = "VaciarCarrito"; //creo id para el div carrito
+//container.appendChild(conteinerVaciarCarrito);
 
 
 const botonVaciarCarrito = document.createElement("button");
 
 botonVaciarCarrito.innerText = "Vaciar Carrito";
+botonVaciarCarrito.className = "btn-vaciarCarrito"
 conteinerCarrito.appendChild(botonVaciarCarrito);
 
 
@@ -371,8 +398,12 @@ function vaciarCarrito() {
         actualizarLocalStorage()
         alert("Se borraron todos los productos del carrito");
         verCarrito()
+        
+        
     } else {
         alert("El carrito está vacio");
+        
+     
     }
 
 }
@@ -380,7 +411,50 @@ function vaciarCarrito() {
 botonVaciarCarrito.onclick = () => vaciarCarrito()
 
 
+const botonComprarCarrito = document.createElement("button");
+botonComprarCarrito.id = "Comprar";
+botonComprarCarrito.innerText = "Comprar";
+conteinerCarrito.appendChild(botonComprarCarrito);
+botonComprarCarrito.onclick = () => comprar(carrito);
+
+function comprar() {
+    const compra = confirm("Deseas realizar con la compra?")
+
+    if (compra) {
+        carrito = [];
+        carritohtml.innerHTML = "";
+        localStorage.removeItem("Carrito");
+        actualizarLocalStorage();
+        alert("Tu Compra fué realizada con éxito!");
+        conteinerCarrito.style.display = "none";
+    }
+    else {
+        alert("Ups! Cancelaste tu compra, dejamos los productos elegidos en el carrito en caso que te arrepientas y quieras comprarlos!");
+    }
+
+}
+
+const msjWhatsapp = document.createElement("span");
+msjWhatsapp.id = "mensaje-wp";
+msjWhatsapp.innerText = "Si necesitas ayuda, no dudes en contactarnos!";
+whatsApplahuerta.appendChild(msjWhatsapp);
+msjWhatsapp.style.display = "none"; 
+
+whatsApplahuerta.onmouseout = () => {
+
+    msjWhatsapp.style.display = "none"; 
+}
+
+
+whatsApplahuerta.onmouseover = () => {
+
+    msjWhatsapp.style.display = "block";
+}
 
 
 
+
+    
+
+ 
 

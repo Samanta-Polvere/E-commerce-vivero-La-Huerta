@@ -31,22 +31,25 @@
     align-items: center;
 
 }
+
 #logueo {
     width: 15%;
     position: absolute;
     top: 40px;
     right: 40px;
     padding: 15px;
-    color:#4f664a ;
-    border: solid  1px #4f664a;
+    color: #4f664a;
+    border: solid 1px #4f664a;
 
 }
-#logueo button{
+
+#logueo button {
     margin-top: 20px;
-    background-color:#4f664a;
+    background-color: #4f664a;
     color: #fcf7ed;
     font-family: "Prompt";
 }
+
 .LogoLahuerta {
     width: 25%;
     text-align: center;
@@ -56,7 +59,7 @@
 
 .imgLogoHuerta {
     width: 90%;
- 
+
 }
 
 .navbar {
@@ -75,11 +78,13 @@
 
 /*diseño del main*/
 
-.main-index, .main-productos {
+.main-index,
+.main-productos,
+.mail-carrito {
     width: 100%;
     grid-area: main;
     background-color: #fcf7ed;
-    
+
 }
 
 .main-lahuerta {
@@ -94,7 +99,7 @@
     transform: rotate(15deg);
     position: absolute;
     top: 220px;
-    
+
 }
 
 .inicio-lahuerta {
@@ -111,14 +116,16 @@
 }
 
 .main-lahuerta h2 {
-   width: 90%;
+    width: 90%;
     margin-bottom: 30px;
     font-family: "Prompt";
 
 }
-.acceso-tienda{
+
+.acceso-tienda {
     margin-right: 300px;
 }
+
 .tienda-lahuerta {
     padding: 2px 25px 2px 25px;
 
@@ -130,7 +137,8 @@
     border-radius: 20px;
     border: 1px solid #4f664a;
 }
-.nosotros{
+
+.nosotros {
     width: 70% auto;
     margin-top: 300px;
     margin-left: 30px;
@@ -139,50 +147,74 @@
     border-radius: 20px;
     padding: 10px;
 }
-.nosotros p{
+
+.nosotros p {
     text-align: center;
     font-family: "Prompt";
     font-size: 1rem;
     line-height: 1.5rem;
     color: #fcf7ed;
 }
-.whatsApp-lahuerta{
-    width: 97%;
-    text-align: right;
+
+#wp {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    margin-right: 5px;
     position: fixed;
     bottom: 20px;
-}
-.whatsApp-lahuerta img{
-    width: 60px;
- 
+
 }
 
-#contenedor-productos{
+#whatsApp-lahuerta {
+    width: 30%;
+    text-align: right;
+
+
+}
+
+.wp-lahuerta img {
+    width: 55px;
+    cursor: pointer;
+
+}
+
+#mensaje-wp {
+    width: 80%;
+    text-align: center;
+    background-color: #d4eecebb;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+#contenedor-productos {
     width: 100%;
     height: auto;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 30px;
+   
 }
 
-.prod-div{
+.prod-div {
     width: 400px;
     height: auto;
     color: #fcf7ed;
     text-align: center;
     background-color: #4f664afb;
     border: 1px solid #051401;
-    margin: 15px;
+    margin: 10px;
     padding: 15px;
 }
 
-.img-prod{
+.img-prod {
     width: 250px;
     height: 250px;
     margin-bottom: 10px;
 }
-.btn-agregar{
+
+.btn-agregar {
     background-color: #12310a;
     color: #fcf7ed;
     padding: 5px;
@@ -190,69 +222,139 @@
     border: 1px solid #051401;
     box-shadow: 1px 1px 2px 2px gray;
 }
-#carrito button, #borrarCarrito button{
-    padding: 10px;
+
+.btn-vaciarCarrito {
+    padding: 8px;
     margin-left: 10px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgb(161, 150, 142);
-    border: 1px solid black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    background-color: #d4eecebb;
+    color: #12310a;
+    font-weight: bold;
+    border: 1px solid #4f664a;
+    border-radius: 10px;
+}
+#Comprar{
+    padding: 8px;
+    margin-left: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    background-color: #d4eecebb;
+    color: #12310a;
+    font-weight: bold;
+    border: 1px solid #4f664a;
+    border-radius: 10px;
+ }
+.btn-verCarrito {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    padding: 25px;
+    border: none;
+    background-color: #fcf7ed;
+    background-image: url(../img/img-carrito.png);
+    background-size: 40px;
+    background-repeat: no-repeat;
+
 }
 
+#eliminarProd {
+    background-image: url(../img/img-tacho-basura.png);
+    padding: 10px;
+    border: none;
+    background-color: #4f664a00;
+    background-repeat: no-repeat;
+    background-size: 20px;
+
+
+}
+
+#carrito{
+    width: 20%;
+    position: absolute;
+    top: 70px;
+    right: 50px;
+    background-color: #4f664a2f;
+    border-radius: 25px;
+    padding: 15px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.prod-elegidos{
+    border-radius: 20px;
+    background-color: #4f664afb;
+    color: #fcf7ed;
+    line-height: 1px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    margin: 10px;
+    padding: 5px;
+}
+.prod-elegidos h3{
+    font-size: 15px;
+}
 /*Diseño del Footer*/
 
 .footer {
     width: 100%;
     height: auto;
-    padding-top:  30px;
+    padding-top: 30px;
     grid-area: footer;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: #fcf7ed;
 }
-.ubicacion{
+
+.ubicacion {
     width: 25%;
     text-align: center;
     font-family: "Prompt";
     font-size: 30px;
     color: #4f664a;
-   
+
 }
-.ubicacion iframe{
+
+.ubicacion iframe {
     width: 450px;
     height: 200px;
     border-radius: 20px;
     margin-bottom: 10px;
 }
-.redesSociales{
+
+.redesSociales {
     width: 20%;
     margin-bottom: 40px;
 }
-.redesSociales .sociales img{
+
+.redesSociales .sociales img {
     width: 40px;
     margin-bottom: 10px;
 }
-.contacto-redes{
+
+.contacto-redes {
     margin-bottom: 20px;
     font-family: "Prompt";
     font-size: 30px;
     color: #4f664a;
 }
-.sociales{
+
+.sociales {
     width: 55%;
-    
-    
+
+
 }
+
 .textoRedes-sociales {
     float: right;
     color: #4f664a;
-    
+
 }
 
-.copyright{
+.copyright {
     width: 85%;
     margin-right: 100px;
-    padding-top: 20px ;
+    padding-top: 20px;
     padding-bottom: 10px;
     text-align: center;
     border-top: 1px solid #4f664a;
