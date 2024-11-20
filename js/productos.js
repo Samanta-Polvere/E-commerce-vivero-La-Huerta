@@ -416,7 +416,7 @@ function vaciarCarrito() {
 
             text: "Se borraron todos los productos de tu carrito",
             
-            duration: 2000
+            duration: 1000
             
             }).showToast();
         verCarrito()
@@ -428,7 +428,7 @@ function vaciarCarrito() {
 
         text: "El carrito está vacio",
         
-        duration: 2000
+        duration: 1000
         
         }).showToast();
 
