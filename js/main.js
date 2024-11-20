@@ -1,4 +1,18 @@
-alert("Hola! Somos Vivero La Huerta! Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.");
+//alert("Hola! Somos Vivero La Huerta! Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.");
+
+Swal.fire({
+    title: "Hola! Somos Vivero La Huerta!",
+    text: "Aquí vas a encontrar muchas opciones para convertir un ambiente en TU ESPACIO.",
+    imageUrl: "./img/LogoViveroLaHuerta.png",
+    imageWidth: 300,
+    imageHeight: 300,
+    confirmButtonText: "Ingresar!",
+    confirmButtonColor: "#4f664a",
+    imageAlt: "Vivero La Huerta",
+    color: "#4f664a",
+    
+  });
+
 const whatsApplahuerta = document.getElementById ("whatsApp-lahuerta");
 
 // Objeto - Loguarse
