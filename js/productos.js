@@ -8,11 +8,18 @@ async function cargarProductos() {
     try {
         const response = await fetch("../productos.json");
         listaProductos = await response.json();
-       
+
         mostrarTodosProd()
 
     } catch (error) {
         console.error("Error al cargar los productos:", error);
+
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Error al cargar los productos",
+            color: "#4f664a",
+        });
     }
 }
 cargarProductos();
@@ -293,8 +300,12 @@ function agregarProducto(producto) {
 
     actualizarLocalStorage()//se actualiza el carrito en el local storage
 
-    alert(`Felicidades! Agregaste ${producto.nombre} Precio: $${producto.precio} a tu carrito.`)
-
+    Swal.fire({
+        icon: "success",
+        title: "Felicidades!",
+        text: `Agregaste ${producto.nombre} Precio: $${producto.precio} a tu carrito.`,
+        confirmButtonColor: "#4f664a"
+    });
 
 }
 
@@ -316,7 +327,7 @@ conteinerCarrito.appendChild(carritohtml);
 
 //oculto conteinercarrito
 conteinerCarrito.style.display = "none";
-  
+
 //ver carrito
 function verCarrito() {
 
@@ -354,7 +365,11 @@ function verCarrito() {
     }
     else {
         conteinerCarrito.style.display = "none";
-        alert("Tu carrito está vacio.")
+        Swal.fire({
+            title: "Tu carrito está vacio.",
+            confirmButtonColor: "#4f664a"
+        })
+            ;
         return;
     }
 
@@ -396,14 +411,28 @@ function vaciarCarrito() {
         carrito = []; //se eliminan los productos del carrito 
         localStorage.removeItem("Carrito");
         actualizarLocalStorage()
-        alert("Se borraron todos los productos del carrito");
+        //alert("Se borraron todos los productos del carrito");
+        Toastify({
+
+            text: "Se borraron todos los productos de tu carrito",
+            
+            duration: 2000
+            
+            }).showToast();
         verCarrito()
-        
-        
+
+
     } else {
-        alert("El carrito está vacio");
+       // alert("El carrito está vacio");
+       Toastify({
+
+        text: "El carrito está vacio",
         
-     
+        duration: 2000
+        
+        }).showToast();
+
+
     }
 
 }
@@ -418,7 +447,7 @@ conteinerCarrito.appendChild(botonComprarCarrito);
 botonComprarCarrito.onclick = () => comprar(carrito);
 
 function comprar() {
-    const compra = confirm("Deseas realizar con la compra?")
+    const compra = confirm("Deseas realizar la compra?")
 
     if (compra) {
         carrito = [];
@@ -438,11 +467,11 @@ const msjWhatsapp = document.createElement("span");
 msjWhatsapp.id = "mensaje-wp";
 msjWhatsapp.innerText = "Si necesitas ayuda, no dudes en contactarnos!";
 whatsApplahuerta.appendChild(msjWhatsapp);
-msjWhatsapp.style.display = "none"; 
+msjWhatsapp.style.display = "none";
 
 whatsApplahuerta.onmouseout = () => {
 
-    msjWhatsapp.style.display = "none"; 
+    msjWhatsapp.style.display = "none";
 }
 
 
@@ -454,7 +483,7 @@ whatsApplahuerta.onmouseover = () => {
 
 
 
-    
 
- 
+
+
 
