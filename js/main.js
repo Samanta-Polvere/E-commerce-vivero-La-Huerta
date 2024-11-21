@@ -10,10 +10,11 @@ Swal.fire({
     confirmButtonColor: "#4f664a",
     imageAlt: "Vivero La Huerta",
     color: "#4f664a",
-    
-  });
+    width: "500",
 
-const whatsApplahuerta = document.getElementById ("whatsApp-lahuerta");
+});
+
+const whatsApplahuerta = document.getElementById("whatsApp-lahuerta");
 
 // Objeto - Loguarse
 class UsuarioNuevo {
@@ -67,11 +68,28 @@ function loguearse() {
     const usuarioExistente = listaUsuario.find(usuario => usuario.dni === dniIngresado && usuario.contraseña === contraseñaIngresada);
 
     if (usuarioExistente) {
-        const mensajeLogueo = `¡Hola ${usuarioExistente.nombre} ${usuarioExistente.apellido}. Bienvenido a vivero La Huerta!`
-        alert(mensajeLogueo);
+        //const mensajeLogueo =
+         Swal.fire({
+            title: `¡Hola ${usuarioExistente.nombre} ${usuarioExistente.apellido}.`,
+            text:"Bienvenido a vivero La Huerta!",
+            icon: "success",
+            color: "#4f664a",
+            confirmButtonColor: "#4f664a"
+        });
+        
+              
+        
     }
     else {
-        alert("Tenes que registrarte");
+
+        Swal.fire({
+            title: "No hemos podido encontrarte 😥",
+            text:"Es necesario que te registes para poder comprar",
+             icon: 'warning',
+             color: "#4f664a",
+             confirmButtonColor: "#4f664a",
+             iconColor: "#051401"
+        });
     }
 }
 
@@ -82,7 +100,7 @@ const msjWhatsapp = document.createElement("span");
 msjWhatsapp.id = "mensaje-wp";
 msjWhatsapp.innerText = "Si necesitas ayuda, no dudes en contactarnos!";
 whatsApplahuerta.appendChild(msjWhatsapp);
-msjWhatsapp.style.display = "none"; 
+msjWhatsapp.style.display = "none";
 
 whatsApplahuerta.onmouseout = () => {
 

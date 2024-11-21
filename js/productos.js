@@ -12,7 +12,7 @@ async function cargarProductos() {
         mostrarTodosProd()
 
     } catch (error) {
-        console.error("Error al cargar los productos:", error);
+        //console.error("Error al cargar los productos:", error);
 
         Swal.fire({
             icon: "error",
@@ -23,6 +23,8 @@ async function cargarProductos() {
     }
 }
 cargarProductos();
+
+
 
 /*
 const listaProductos = [
@@ -109,7 +111,7 @@ const listaProductos = [
     },
 ]*/
 
-const container = document.getElementById("contenedor-productos"); //creo el contenedor donde van a ir todos los productos mostrados haciendo referencia al div "contenedor-productos" del html
+const container = document.getElementById("contenedor-productos"); //Contenedor donde van a ir todos los productos mostrados haciendo referencia al div "contenedor-productos" del html
 const htmlProductos = document.getElementById("html-Productos");
 const whatsApplahuerta = document.getElementById("whatsApp-lahuerta");
 
@@ -284,6 +286,7 @@ function mostrarProdporCategAccesorios() {
 */
 
 
+
 //agregar productos al carrito
 
 let carrito = JSON.parse(localStorage.getItem("Carrito")) || []
@@ -350,7 +353,7 @@ function verCarrito() {
             nombre.innerText = `Nombre: ${prodElegido.nombre}`;
             precio.innerText = `Precio: $${prodElegido.precio}`;
             stock.innerText = `Stock: ${prodElegido.stock}`;
-
+            
 
 
 
@@ -376,8 +379,12 @@ function verCarrito() {
 
 };
 
+
+
+
 // Funcion para eliminar un producto del carrito
 function borrarProd(id) {
+
     const prodFiltrados = carrito.findIndex((prod) => prod.id == id)
     actualizarLocalStorage()
 
@@ -385,18 +392,21 @@ function borrarProd(id) {
     if (prodFiltrados >= 0) {
         carrito.splice(prodFiltrados, 1)
         actualizarLocalStorage()
-        alert("El producto ha sido eliminado del carrito")
+        //alert("El producto ha sido eliminado del carrito")
+        Toastify({
+            text: "El producto ha sido eliminado del carrito",
+            duration: 1500,
+            style: {
+                background: "linear-gradient( to right, #4f664afb, #d4eecebb)",
+              },
+        }).showToast();
+
         verCarrito()
     }
 }
 
 
 //Vaciar todo el carrito
-
-//const conteinerVaciarCarrito = document.createElement("div");
-//conteinerVaciarCarrito.id = "VaciarCarrito"; //creo id para el div carrito
-//container.appendChild(conteinerVaciarCarrito);
-
 
 const botonVaciarCarrito = document.createElement("button");
 
@@ -413,23 +423,17 @@ function vaciarCarrito() {
         actualizarLocalStorage()
         //alert("Se borraron todos los productos del carrito");
         Toastify({
-
             text: "Se borraron todos los productos de tu carrito",
-            
             duration: 1000
-            
-            }).showToast();
+        }).showToast();
         verCarrito()
 
 
     } else {
-       // alert("El carrito está vacio");
-       Toastify({
-
-        text: "El carrito está vacio",
-        
-        duration: 1000
-        
+        // alert("El carrito está vacio");
+        Toastify({
+            text: "El carrito está vacio",
+            duration: 1000
         }).showToast();
 
 
@@ -447,21 +451,52 @@ conteinerCarrito.appendChild(botonComprarCarrito);
 botonComprarCarrito.onclick = () => comprar(carrito);
 
 function comprar() {
-    const compra = confirm("Deseas realizar la compra?")
-
+   //const compra = confirm("Deseas realizar la compra?")
+   Swal.fire({
+    title: "Deseas realizar la compra?",
+    showCancelButton: true,
+    confirmButtonText: "Aceptar",
+    confirmButtonColor: "#051401",
+    cancelButtonColor: " #051401",
+    color: "#4f664a",
+    denyButtonText: `Cancelar`
+  }).then((result) => {
+    const compra = result.isConfirmed; 
     if (compra) {
         carrito = [];
         carritohtml.innerHTML = "";
         localStorage.removeItem("Carrito");
         actualizarLocalStorage();
-        alert("Tu Compra fué realizada con éxito!");
+      
+      //alert("Tu Compra fué realizada con éxito!");
+        Swal.fire({
+            title: "Tu Compra fué realizada con éxito!",
+            width: 600,
+            padding: "1em",
+            color: "#4f664a",
+            confirmButtonColor: "#4f664a",
+            background: "#fff url(/images/trees.png)",
+           
+          });
+
         conteinerCarrito.style.display = "none";
     }
     else {
-        alert("Ups! Cancelaste tu compra, dejamos los productos elegidos en el carrito en caso que te arrepientas y quieras comprarlos!");
+       //alert("Ups! Cancelaste tu compra". Dejamos los productos elegidos en el carrito en caso que te arrepientas y quieras comprarlos!");
+        Swal.fire({
+            width: "350",
+            title: "Ups! Cancelaste tu compra 😥",
+            text:"Dejamos los productos elegidos en el carrito en caso que te arrepientas y quieras comprarlos!",
+             icon: 'warning',
+             color: "#4f664a",
+             confirmButtonColor: "#4f664a",
+             confirmButtonText: "Aceptar",
+             iconColor: "#051401"
+        });
     }
 
-}
+})}
+ 
 
 const msjWhatsapp = document.createElement("span");
 msjWhatsapp.id = "mensaje-wp";
