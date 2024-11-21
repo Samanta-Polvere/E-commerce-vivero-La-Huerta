@@ -50,6 +50,43 @@
     font-family: "Prompt";
 }
 
+.contenedor-loader{
+    position: fixed; /* Fijar la capa de fondo para que cubra toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con opacidad */
+    z-index: 9999; /* Asegúrate de que esté encima de otros elementos */
+ }
+.loader {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 60px;
+    aspect-ratio: 1;
+    border: 15px solid #ddd;
+    border-radius: 50%;
+   /*position: relative;*/
+    transform: rotate(45deg);
+    z-index: 10000; /* Asegura que el loader esté sobre el contenedor */
+  }
+  .loader::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 15px solid  #203d1a;
+    animation: l18 2s infinite linear;
+  }
+  @keyframes l18 {
+      0%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
+  }
+
 .LogoLahuerta {
     width: 25%;
     text-align: center;

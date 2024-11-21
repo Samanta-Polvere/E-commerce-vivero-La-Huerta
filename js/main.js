@@ -60,6 +60,16 @@ acceder.innerText = "Ingresar"
 
 logueo.appendChild(acceder);
 
+//creo un set timeout para loguarse
+const contenedor = document.getElementById("index-contenedor");
+const contenedorLoader = document.createElement("div");
+contenedorLoader.className = "contenedor-loader";
+const loader = document.createElement("div");
+loader.className = "loader";
+contenedor.appendChild(contenedorLoader);
+contenedorLoader.appendChild(loader);
+contenedorLoader.style.display = "none";
+
 //funcion para loguearse
 function loguearse() {
     const dniIngresado = parseInt(dni.value);
@@ -69,19 +79,28 @@ function loguearse() {
 
     if (usuarioExistente) {
         //const mensajeLogueo =
+        contenedorLoader.style.display="block"
+
+        setTimeout(()=>{
+
+            contenedorLoader.style.display = "none";
          Swal.fire({
             title: `¡Hola ${usuarioExistente.nombre} ${usuarioExistente.apellido}.`,
             text:"Bienvenido a vivero La Huerta!",
             icon: "success",
             color: "#4f664a",
             confirmButtonColor: "#4f664a"
+           
         });
-        
-              
+       
+    }, 2200);    
         
     }
     else {
+        contenedorLoader.style.display="block"
+        setTimeout(()=>{
 
+            contenedorLoader.style.display = "none";
         Swal.fire({
             title: "No hemos podido encontrarte 😥",
             text:"Es necesario que te registes para poder comprar",
@@ -90,11 +109,11 @@ function loguearse() {
              confirmButtonColor: "#4f664a",
              iconColor: "#051401"
         });
+    }, 2200);
     }
 }
 
 acceder.addEventListener("click", loguearse);
-
 
 const msjWhatsapp = document.createElement("span");
 msjWhatsapp.id = "mensaje-wp";

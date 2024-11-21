@@ -4,6 +4,7 @@
 let listaProductos = [];
 
 // Función para cargar productos
+
 async function cargarProductos() {
     try {
         const response = await fetch("../productos.json");
